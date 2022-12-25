@@ -8,7 +8,6 @@ class AuthenticationApiApplicationTests {
 
 	@Test
 	void contextLoads() {
-		System.out.println("TESTE");
 	}
 
 }
