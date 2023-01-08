@@ -1,7 +1,7 @@
 FROM openjdk
+VOLUME /tmp
 
-WORKDIR /app
+ENV TZ=America/Sao_Paulo
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-COPY target/authentication-api-0.0.1-SNAPSHOT.jar /app/authentication-api.jar
-
-ENTRYPOINT ["java", "-jar", "authentication-api.jar"]
+ENTRYPOINT exec java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /app.jar
