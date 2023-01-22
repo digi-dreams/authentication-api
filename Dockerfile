@@ -1,7 +1,9 @@
-FROM openjdk
-VOLUME /tmp
+FROM maven:3.8.2-jdk-11 AS build
+COPY . .
+RUN mvn clean package -DskipTests
 
-ENV TZ=America/Sao_Paulo
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+FROM openjdk:11-jdk-slim
+COPY --from=build /target/authentication-api-0.0.1-SNAPSHOT.jar authentication-api.jar
 
-ENTRYPOINT exec java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /app.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "authentication-api.jar"]

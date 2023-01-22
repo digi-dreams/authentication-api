@@ -16,7 +16,7 @@ public class UserTest {
 
         assertThat(response)
                 .extracting("id", "name", "cpf", "email",
-                        "birthdate", "phone", "registrationData", "occupation")
+                        "birthdate", "phone", "created_at", "occupation")
                 .containsExactly(1l, "Test", "12345678910", "test@test.com", LocalDate.now(),
                         "123456789", LocalDateTime.of(2017, Month.FEBRUARY,3,6,30,40,50000),
                         Eoccupation.TATTOO_ARTIST);
