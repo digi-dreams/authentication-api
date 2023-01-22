@@ -21,7 +21,7 @@ public class UserResponse {
     private LocalDate birthdate;
     private String phone;
     private Eoccupation occupation;
-    private LocalDateTime registrationData;
+    private LocalDateTime created_at;
 
     public static UserResponse of(User user) {
         var response = new UserResponse();
