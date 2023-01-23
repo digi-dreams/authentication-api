@@ -17,7 +17,7 @@ public class UserHelper {
                 .birthdate(LocalDate.now())
                 .phone("123456789")
                 .password("test")
-                .registrationData(LocalDateTime.of(2017,Month.FEBRUARY,3,6,30,40,50000))
+                .created_at(LocalDateTime.of(2017,Month.FEBRUARY,3,6,30,40,50000))
                 .occupation(Eoccupation.TATTOO_ARTIST)
                 .build();
     }
