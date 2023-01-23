@@ -1,16 +1,15 @@
 package src.authenticationapi.modules.user.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
 import lombok.*;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import src.authenticationapi.modules.user.dto.UserRequest;
 import src.authenticationapi.modules.user.enums.Eoccupation;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.*;
 
 @Data
 @Builder
@@ -19,6 +18,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "users")
 @EqualsAndHashCode(of = "id")
+@EntityListeners(AuditingEntityListener.class)
 public class User {
 
     @Id
@@ -40,8 +40,8 @@ public class User {
     @Column(name = "password", nullable = false, updatable = false, length = 80)
     @NotBlank
     private String password;
-    @Column(name = "registration_data", updatable = false, nullable = false)
-    private LocalDateTime registrationData;
+    @Column(name = "created_at", updatable = false, nullable = false) @CreatedDate
+    private LocalDateTime created_at;
     @Column(name = "occupation")
     @Enumerated(EnumType.STRING)
     private Eoccupation occupation;
@@ -49,7 +49,6 @@ public class User {
     public static User of(UserRequest request) {
         var user = new User();
         BeanUtils.copyProperties(request, user);
-        user.setRegistrationData(LocalDateTime.now());
         return user;
     }
 }

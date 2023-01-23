@@ -1,0 +1,11 @@
+version: '3.2'
+services:
+  postgresql:
+    image: postgres:10.4
+    volumes:
+      - ./postgresql/:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=${PGUSER}
+      - POSTGRES_PASSWORD=${PGPASSWORD}
+    ports:
+      - 5432:5432
