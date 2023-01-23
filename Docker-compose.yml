@@ -5,6 +5,7 @@ services:
     volumes:
       - ./postgresql/:/var/lib/postgresql/data/
     environment:
+      - SPRING_PROFILES_ACTIVE=dev
       - POSTGRES_USER=${PGUSER}
       - POSTGRES_PASSWORD=${PGPASSWORD}
     ports:

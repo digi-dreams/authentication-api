@@ -1,11 +1,8 @@
 spring:
-  profiles:
-    active: prod
-
   datasource:
-    url: jdbc:postgresql://localhost:5432/authentication
-    username: marcos
-    password: password
+    url: jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}
+    username: ${PGUSER}
+    password: ${PGPASSWORD}
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -19,6 +16,7 @@ spring:
       ddl-auto: update
 
 server:
+  port: ${PORT}
   tomcat:
     accesslog:
       enabled: true
