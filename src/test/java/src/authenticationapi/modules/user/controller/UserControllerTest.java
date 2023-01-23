@@ -8,6 +8,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import src.authenticationapi.modules.user.model.User;
@@ -22,6 +23,7 @@ import static src.authenticationapi.modules.user.helper.UserHelper.*;
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(controllers = UserController.class)
 @MockBean(JpaMetamodelMappingContext.class)
+@ActiveProfiles("dev")
 public class UserControllerTest {
 
     private static final String URL = "/api/users";

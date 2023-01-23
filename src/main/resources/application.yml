@@ -16,7 +16,7 @@ spring:
       ddl-auto: update
 
 server:
-  port: ${PORT}
+#  port: ${PORT}
   tomcat:
     accesslog:
       enabled: true
